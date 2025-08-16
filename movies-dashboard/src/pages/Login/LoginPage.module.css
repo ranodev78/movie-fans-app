@@ -1,0 +1,375 @@
+/* LoginPage.module.css */
+
+.container {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    position: relative;
+  }
+  
+  .backgroundPattern {
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23f1f5f9' fill-opacity='0.4'%3E%3Ccircle cx='30' cy='30' r='1.5'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    opacity: 0.2;
+  }
+  
+  .wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 28rem;
+  }
+  
+  .card {
+    background: white;
+    border-radius: 1rem;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    border: 1px solid #e5e7eb;
+    overflow: hidden;
+  }
+  
+  .header {
+    background: linear-gradient(130deg, #4ecdc4, #ff6b6b);
+    padding: 2rem;
+    text-align: center;
+  }
+  
+  .iconWrapper {
+    width: 4rem;
+    height: 4rem;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+    backdrop-filter: blur(4px);
+  }
+  
+  .icon {
+    width: 2rem;
+    height: 2rem;
+    color: white;
+  }
+  
+  .title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 0.5rem;
+    margin-top: 0;
+  }
+  
+  .subtitle {
+    color: #dbeafe;
+    margin: 0;
+    font-size: 0.875rem;
+  }
+  
+  .formContainer {
+    padding: 2rem;
+  }
+  
+  .form {
+    width: 100%;
+  }
+  
+  .formGroup {
+    margin-bottom: 1.5rem;
+  }
+  
+  .label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #374151;
+    margin-bottom: 0.5rem;
+  }
+  
+  .input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    background-color: #f9fafb;
+    transition: all 0.2s ease;
+    box-sizing: border-box;
+  }
+  
+  .input:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px #3b82f6;
+    border-color: transparent;
+    background-color: white;
+  }
+  
+  .passwordWrapper {
+    position: relative;
+  }
+  
+  .passwordInput {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    padding-right: 3rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    background-color: #f9fafb;
+    transition: all 0.2s ease;
+    box-sizing: border-box;
+  }
+  
+  .passwordInput:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px #3b82f6;
+    border-color: transparent;
+    background-color: white;
+  }
+  
+  .passwordToggle {
+    position: absolute;
+    right: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: #6b7280;
+    cursor: pointer;
+    padding: 0.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.25rem;
+    transition: color 0.2s ease;
+  }
+  
+  .passwordToggle:hover {
+    color: #374151;
+  }
+  
+  .passwordToggle:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px #3b82f6;
+  }
+  
+  .toggleIcon {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+  
+  .rememberRow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+  }
+  
+  .checkboxLabel {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+  
+  .checkbox {
+    width: 1rem;
+    height: 1rem;
+    accent-color: #2563eb;
+    margin-right: 0.5rem;
+    cursor: pointer;
+  }
+  
+  .checkbox:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px #3b82f6;
+  }
+  
+  .checkboxText {
+    font-size: 0.875rem;
+    color: #6b7280;
+    user-select: none;
+  }
+  
+  .forgotLink {
+    font-size: 0.875rem;
+    color: #2563eb;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+  
+  .forgotLink:hover {
+    color: #1d4ed8;
+    text-decoration: underline;
+  }
+  
+  .forgotLink:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px #3b82f6;
+    border-radius: 0.25rem;
+  }
+  
+  .message {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .errorMessage {
+    background-color: #fef2f2;
+    border: 1px solid #fecaca;
+    color: #dc2626;
+  }
+  
+  .successMessage {
+    background-color: #f0fdf4;
+    border: 1px solid #bbf7d0;
+    color: #16a34a;
+  }
+  
+  .messageIcon {
+    width: 1.25rem;
+    height: 1.25rem;
+    flex-shrink: 0;
+  }
+  
+  .messageText {
+    font-size: 0.875rem;
+  }
+  
+  .submitButton {
+    width: 100%;
+    background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+    color: white;
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+  
+  .submitButton:hover:not(:disabled) {
+    background: linear-gradient(135deg, #1d4ed8 0%, #3730a3 100%);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+  }
+  
+  .submitButton:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px #60a5fa;
+  }
+  
+  .submitButton:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+  }
+  
+  .buttonIcon {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+  
+  .spinner {
+    animation: spin 1s linear infinite;
+  }
+  
+  .divider {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #e5e7eb;
+    text-align: center;
+  }
+  
+  .supportText {
+    font-size: 0.875rem;
+    color: #6b7280;
+    margin: 0;
+  }
+  
+  .supportLink {
+    color: #2563eb;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+  
+  .supportLink:hover {
+    color: #1d4ed8;
+    text-decoration: underline;
+  }
+  
+  .supportLink:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px #3b82f6;
+    border-radius: 0.25rem;
+  }
+  
+  .footer {
+    text-align: center;
+    margin-top: 1.5rem;
+    font-size: 0.875rem;
+    color: #9ca3af;
+  }
+  
+  .footer p {
+    margin: 0;
+  }
+  
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 640px) {
+    .container {
+      padding: 0.5rem;
+    }
+    
+    .header {
+      padding: 1.5rem;
+    }
+    
+    .formContainer {
+      padding: 1.5rem;
+    }
+    
+    .title {
+      font-size: 1.25rem;
+    }
+    
+    .rememberRow {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.75rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .wrapper {
+      max-width: 100%;
+    }
+    
+    .card {
+      border-radius: 0.75rem;
+    }
+    
+    .formContainer {
+      padding: 1.25rem;
+    }
+  }

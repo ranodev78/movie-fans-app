@@ -1,0 +1,159 @@
+  .newlyReleasedContainer {
+    margin-top: 2rem;
+  }
+  
+  .sectionHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+  
+  .sectionTitle {
+    font-size: 1.25rem;
+    font-weight: 600;
+  }
+  
+  .coursesGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(222px, 1fr));
+    gap: 20px;
+  }
+  
+  .courseCard {
+    position: relative;
+    background-color: #ffffff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease-in-out;
+    width: 222px;
+    cursor: pointer;
+  }
+  
+  .courseCard:hover {
+    transform: scale(1.03);
+  }
+  
+  .courseImageContainer {
+    position: relative;
+  }
+  
+  .courseImage {
+    width: 222px;
+    height: 333px;
+    background-color: #e5e7eb;
+    background-image: linear-gradient(45deg, #f3f4f6 25%, transparent 25%),
+                  linear-gradient(-45deg, #f3f4f6 25%, transparent 25%),
+                  linear-gradient(45deg, transparent 75%, #f3f4f6 75%),
+                  linear-gradient(-45deg, transparent 75%, #f3f4f6 75%);
+    background-size: 20px 20px;
+    background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: 12px 12px 0px 0px;
+  }
+  
+  .courseImage img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 12px 12px 0px 0px;
+  }
+  
+  .heartButton {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    background-color: rgba(255, 255, 255, 0.9);
+    border: none;
+    border-radius: 50%;
+    padding: 0.5rem;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .heartIcon {
+    color: #ef4444;
+    width: 1rem;
+    height: 1rem;
+  }
+  
+  .courseContent {
+    padding: 12px;
+  }
+  
+  .courseTitle {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    line-height: 1.3;
+  }
+
+  .description {
+    font-size: 12px;
+    line-height: 1.3;
+    max-height: 6rem; /* roughly 3 lines with line-height 1.3 */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 6; /* number of lines to show */
+    -webkit-box-orient: vertical;
+  }
+
+  .genreBadge {
+    padding: 0.25rem 0.5rem;
+    border-radius: 9999px;
+    font-size: 12px;
+    font-weight: 500;
+    color: white;
+    display: inline-block;
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.85);
+    color: white;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+    text-align: center;
+  }
+
+  .courseCard:hover .overlay {
+    opacity: 1;
+    z-index: 3;
+  }
+  
+  .genreAction         { background-color: #dc2626; }
+  .genreAdventure      { background-color: #f97316; }
+  .genreAnimation      { background-color: #f59e0b; }
+  .genreComedy         { background-color: #84cc16; }
+  .genreCrime          { background-color: #22c55e; }
+  .genreDocumentary    { background-color: #06b6d4; }
+  .genreDrama          { background-color: #3b82f6; }
+  .genreFamily         { background-color: #6366f1; }
+  .genreFantasy        { background-color: #8b5cf6; }
+  .genreHistory        { background-color: #ec4899; }
+  .genreHorror         { background-color: #ef4444; }
+  .genreMusic          { background-color: #14b8a6; }
+  .genreMystery        { background-color: #0ea5e9; }
+  .genreRomance        { background-color: #f43f5e; }
+  .genreScienceFiction { background-color: #06b6d4; }
+  .genreTvMovie        { background-color: #eab308; }
+  .genreThriller       { background-color: #a855f7; }
+  .genreWar            { background-color: #4b5563; }
+  .genreWestern        { background-color: #6b7280; }

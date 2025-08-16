@@ -1,0 +1,380 @@
+{
+  "page" : 1,
+  "results" : [
+    {
+      "adult" : false,
+      "backdrop_path" : "/5CdoqLaj2VjMkfXMwUtUwziQJDX.jpg",
+      "genre_ids" : [
+        28,
+        18,
+        53
+      ],
+      "id" : 1290792,
+      "original_language" : "en",
+      "original_title" : "One Spoon of Chocolate",
+      "overview" : "Fresh out of jail, a military veteran relocates to a small Ohio town where many of the residents have a horrifying social agenda, leading the hardened vet to enact his own brand of brutal justice.",
+      "popularity" : 1.1203,
+      "poster_path" : "/ybO8oLgpXRhaPmHI6C2FUpxSRrK.jpg",
+      "release_date" : "2025-06-08",
+      "title" : "One Spoon of Chocolate",
+      "video" : false,
+      "vote_average" : 10,
+      "vote_count" : 1
+    },
+    {
+      "adult" : false,
+      "backdrop_path" : "/vzAcTHSYy9cMwuZ73OrxwbqX5bB.jpg",
+      "genre_ids" : [
+        18,
+        35
+      ],
+      "id" : 1257868,
+      "original_language" : "en",
+      "original_title" : "A Tree Fell in the Woods",
+      "overview" : "What happens when a tree falls in the woods and someone does hear it? Two couples are forced to deal with such a question — and their lives in general — when a New Year's Eve trip to the woods unearths simmering feelings and the secrets they carry threaten to break their seemingly perfect relationships.",
+      "popularity" : 0.9578,
+      "poster_path" : "/nIJFncIam2c4AAfJXAcLbm7UyE4.jpg",
+      "release_date" : "2025-06-08",
+      "title" : "A Tree Fell in the Woods",
+      "video" : false,
+      "vote_average" : 0,
+      "vote_count" : 0
+    },
+    {
+      "adult" : false,
+      "backdrop_path" : "/wcXcAI1S9N9DG7SvjNTGGCxVlsF.jpg",
+      "genre_ids" : [
+        18,
+        35,
+        53
+      ],
+      "id" : 1465557,
+      "original_language" : "en",
+      "original_title" : "Our Hero, Balthazar",
+      "overview" : "In this bold dark satire, wealthy NYC teenager Balthy makes dramatic gun control videos to impress his activist crush. When an online troll targets his content, Balthy becomes convinced he's communicating with a potential school shooter and embarks on an ill-advised journey to Texas to confront him.",
+      "popularity" : 0.9522,
+      "poster_path" : "/e5dRQta3JkearZioSrsD8he7QT3.jpg",
+      "release_date" : "2025-06-08",
+      "title" : "Our Hero, Balthazar",
+      "video" : false,
+      "vote_average" : 0,
+      "vote_count" : 0
+    },
+    {
+      "adult" : false,
+      "backdrop_path" : "/lcxRzYyiqK46UHygV3ytPRG1jFh.jpg",
+      "genre_ids" : [
+        18,
+        878
+      ],
+      "id" : 852229,
+      "original_language" : "ja",
+      "original_title" : "アメガラス",
+      "overview" : "Near-future Tokyo. Kou, through the help of his high school best friend, finds a surprising way to express his mounting frustration at the insidious forces of commercialism that are forcing out the neighbors he cares most about. Initially inspired by a prank that the writer-director Neo Sora (The Chicken, 2020) had pulled on him in his childhood, a sense of warm nostalgia and cold, material reality intermingle to tell a tale set in the not-so-distant future about disappearing spaces and the forces of policing and gentrification that drills this process forward.",
+      "popularity" : 0.8681,
+      "poster_path" : "/bIZk4QGqMTECzlfKqaiAmI2BDQZ.jpg",
+      "release_date" : "2025-06-08",
+      "title" : "Sugar Glass Bottle",
+      "video" : false,
+      "vote_average" : 7,
+      "vote_count" : 1
+    },
+    {
+      "adult" : false,
+      "backdrop_path" : "/AqcSS6Msbo4pwnTE2p5Q63jDMxu.jpg",
+      "genre_ids" : [
+        99
+      ],
+      "id" : 1465794,
+      "original_language" : "en",
+      "original_title" : "Long Live the State",
+      "overview" : "In 2024, the eleven (!) members of the iconic mid-90’s cult comedy troupe The State reunited for a live tour. With their irreverent and absurdist live sketches as the backdrop, and framed with a greatest-hits playlist of classic material, the group’s unreasonably talented stars sit down to share the behind-the-scenes story of The State’s meteoric rise and lasting influence- in typically hilarious fashion.",
+      "popularity" : 0.635,
+      "poster_path" : "/rxSq4WqnwVQVrKgBReoamQd34FA.jpg",
+      "release_date" : "2025-06-08",
+      "title" : "Long Live the State",
+      "video" : false,
+      "vote_average" : 0,
+      "vote_count" : 0
+    },
+    {
+      "adult" : false,
+      "backdrop_path" : "/HYS1zPH7XLL2IWRwVz1rFQOrIz.jpg",
+      "genre_ids" : [
+        53,
+        10749
+      ],
+      "id" : 1354628,
+      "original_language" : "en",
+      "original_title" : "Ride or Die",
+      "overview" : "When Paula, a restless Midwesterner yearning for a fresh start in California, unexpectedly reunites with Sloane—her enigmatic high school crush—the spark between them reignites instantly. What begins as a casual catch-up soon turns into a spontaneous cross-country road trip. But as the miles roll by, hidden secrets and buried traumas surface, and their blossoming romance takes a darker turn. With unexpected consequences at every stop, the journey becomes a fight for trust, survival, and the truth—testing how far they’re willing to go for love, and what they’re running from.",
+      "popularity" : 0.6224,
+      "poster_path" : null,
+      "release_date" : "2025-06-08",
+      "title" : "Ride or Die",
+      "video" : false,
+      "vote_average" : 0,
+      "vote_count" : 0
+    },
+    {
+      "adult" : false,
+      "backdrop_path" : "/9J5pH9flBVfYHdc8hlKHQtLYg5h.jpg",
+      "genre_ids" : [
+        99
+      ],
+      "id" : 1465778,
+      "original_language" : "en",
+      "original_title" : "The Inquisitor",
+      "overview" : "In 1972, Congresswoman Barbara Jordan became the first Southern Black woman to join Congress, one of many firsts in her career as a trailblazing political leader. Looking at her life both in and out of the limelight, this insightful documentary explores how her voice still resonates today.",
+      "popularity" : 0.6222,
+      "poster_path" : "/hoEMZXOJgx0XioWcY8nuoVQ70JZ.jpg",
+      "release_date" : "2025-06-08",
+      "title" : "The Inquisitor",
+      "video" : false,
+      "vote_average" : 0,
+      "vote_count" : 0
+    },
+    {
+      "adult" : false,
+      "backdrop_path" : "/fPMuZeDrgtHW6KjM14f2NFdhPRI.jpg",
+      "genre_ids" : [
+        99
+      ],
+      "id" : 1465527,
+      "original_language" : "en",
+      "original_title" : "We Are Pat",
+      "overview" : "Pat, the evasive, androgynous character made famous on Saturday Night Live by Julia Sweeney, was an inescapable figure in 1990s pop culture. As a child, filmmaker Ro Haber became obsessed with Pat—a character whose popularity stemmed from making others uncomfortable by defying gender norms. Decades later, and now an out trans filmmaker, Haber still grapples with Pat’s legacy. Thirty-five years after It’s Pat first aired, Haber assembles a group of queer and trans comedians, writers, and even Sweeney herself to revisit the character. Through conversation and critique, they aim not to erase Pat but to reframe them, transforming a symbol of ridicule into one of reflection and empowerment.",
+      "popularity" : 0.5312,
+      "poster_path" : "/2wYfmuX3IVz6Ul1tufQIs3DrRjh.jpg",
+      "release_date" : "2025-06-08",
+      "title" : "We Are Pat",
+      "video" : false,
+      "vote_average" : 0,
+      "vote_count" : 0
+    },
+    {
+      "adult" : false,
+      "backdrop_path" : "/5xmnFelLpuHlbwFIjEJPCdGH1T3.jpg",
+      "genre_ids" : [
+        18,
+        9648,
+        53
+      ],
+      "id" : 1246215,
+      "original_language" : "en",
+      "original_title" : "Re-Creation",
+      "overview" : "In a fictitious trial, twelve members of a jury must decide whether journalist Ian Bailey is guilty of the murder of French filmmaker Sophie Toscan Du Plantier in 1996. Based on real events, the film reconstructs, through the discussions between these twelve people, a case that ultimately invites the viewer to draw their own conclusions.",
+      "popularity" : 0.5264,
+      "poster_path" : "/uVVrqQyIyZ0DamTIrqK7FRBNqRz.jpg",
+      "release_date" : "2025-06-08",
+      "title" : "Re-Creation",
+      "video" : false,
+      "vote_average" : 0,
+      "vote_count" : 0
+    },
+    {
+      "adult" : false,
+      "backdrop_path" : "/hfWv453ceXlQP3cCH8Z0LMYjx0A.jpg",
+      "genre_ids" : [
+        27,
+        9648
+      ],
+      "id" : 1465986,
+      "original_language" : "en",
+      "original_title" : "Man Finds Tape",
+      "overview" : "Pulled in by a series of strange and unexplainable video clips, a brother and sister team up to investigate the events captured in the footage, only to discover a shocking secret that’s overtaking their small-town Texas community.",
+      "popularity" : 0.4841,
+      "poster_path" : "/1UP4iLeH84vutvl7TLME4b7PrOF.jpg",
+      "release_date" : "2025-06-08",
+      "title" : "Man Finds Tape",
+      "video" : false,
+      "vote_average" : 0,
+      "vote_count" : 0
+    },
+    {
+      "adult" : false,
+      "backdrop_path" : null,
+      "genre_ids" : [
+        99
+      ],
+      "id" : 1465978,
+      "original_language" : "en",
+      "original_title" : "Maintenance Artist",
+      "overview" : "What happens when art meets trash? Maintenance Artist profiles pioneering public artist Mierle Laderman Ukeles — the first artist-in-residence at NYC’s Department of Sanitation.",
+      "popularity" : 0.4733,
+      "poster_path" : "/VbYDDEw7RPdATftVrAboA0iuP.jpg",
+      "release_date" : "2025-06-08",
+      "title" : "Maintenance Artist",
+      "video" : false,
+      "vote_average" : 0,
+      "vote_count" : 0
+    },
+    {
+      "adult" : false,
+      "backdrop_path" : null,
+      "genre_ids" : [
+        53,
+        9648,
+        27
+      ],
+      "id" : 1480785,
+      "original_language" : "en",
+      "original_title" : "Snap",
+      "overview" : "A lone photographer at a mountain cabin grows suspicious that she might be someone else's subject.",
+      "popularity" : 0.4403,
+      "poster_path" : "/h3Wtc8ASlWIoJvG0Q1RItT2uDYu.jpg",
+      "release_date" : "2025-06-08",
+      "title" : "Snap",
+      "video" : false,
+      "vote_average" : 0,
+      "vote_count" : 0
+    },
+    {
+      "adult" : false,
+      "backdrop_path" : null,
+      "genre_ids" : [
+        18,
+        10402
+      ],
+      "id" : 1465810,
+      "original_language" : "en",
+      "original_title" : "Charliebird",
+      "overview" : "Al is a devoted music therapist at a children’s hospital in Texas. Charlie is the rebellious teen patient assigned to work with her. When Charlie reveals a secret passion project, and professional lines begin to blur, the two forge an unexpected bond that will teach them both how to live.",
+      "popularity" : 0.3948,
+      "poster_path" : null,
+      "release_date" : "2025-06-08",
+      "title" : "Charliebird",
+      "video" : false,
+      "vote_average" : 0,
+      "vote_count" : 0
+    },
+    {
+      "adult" : false,
+      "backdrop_path" : null,
+      "genre_ids" : [
+        99
+      ],
+      "id" : 1465979,
+      "original_language" : "en",
+      "original_title" : "The Last Dive",
+      "overview" : "Terry Kennedy has lived several colorful lives, including a stint as a Hell’s Angel – but, most memorably, as the unlikely friend to a giant manta ray named Willy. Now in his 80s, Terry mounts one last diving expedition to a remote island in search of his long-lost friend.",
+      "popularity" : 0.3939,
+      "poster_path" : "/7WX528XRwZMs6iG110aVrW3X5iS.jpg",
+      "release_date" : "2025-06-08",
+      "title" : "The Last Dive",
+      "video" : false,
+      "vote_average" : 0,
+      "vote_count" : 0
+    },
+    {
+      "adult" : false,
+      "backdrop_path" : null,
+      "genre_ids" : [
+        99
+      ],
+      "id" : 1465549,
+      "original_language" : "en",
+      "original_title" : "Bodyguard of Lies",
+      "overview" : "Exposes the tangled web of deception spun by the U.S. government during its 20-year war in Afghanistan, revealing the campaign of lies and misinformation fed to the American public. Through shocking testimonies from government insiders, confidential documents, and private audio recordings of those at the highest levels of the military and elected leadership, this gripping documentary urges a reckoning with the wider implications of government deception on a global scale.",
+      "popularity" : 0.3734,
+      "poster_path" : null,
+      "release_date" : "2025-06-08",
+      "title" : "Bodyguard of Lies",
+      "video" : false,
+      "vote_average" : 0,
+      "vote_count" : 0
+    },
+    {
+      "adult" : false,
+      "backdrop_path" : "/o4Dxk7nP7wbjZzblnrUFaOMrLMl.jpg",
+      "genre_ids" : [
+        10752,
+        18
+      ],
+      "id" : 1131244,
+      "original_language" : "uk",
+      "original_title" : "Війна очима тварин",
+      "overview" : "Animals in War is a poignant anthology film inspired by true stories of animals impacted by the war in Ukraine. A collaboration between Ukrainian and international artists — including actor and activist Sean Penn — the film is a haunting yet captivating call for global awareness and empathy.",
+      "popularity" : 0.3654,
+      "poster_path" : "/uwHRSXuVNCmAV3TGHx9do1AHoZz.jpg",
+      "release_date" : "2025-06-08",
+      "title" : "Animals in War",
+      "video" : false,
+      "vote_average" : 0,
+      "vote_count" : 0
+    },
+    {
+      "adult" : false,
+      "backdrop_path" : null,
+      "genre_ids" : [ ],
+      "id" : 1474411,
+      "original_language" : "en",
+      "original_title" : "Rise",
+      "overview" : "A charismatic young boy who lives on a rubbish dump in Zimbabwe must convince a reclusive boxing coach to teach him to fight in order to find safety and strength in a world that has left him behind.",
+      "popularity" : 0.3442,
+      "poster_path" : "/3vrSCqQxIMdX6UoDsCrp4IyVqlb.jpg",
+      "release_date" : "2025-06-08",
+      "title" : "Rise",
+      "video" : false,
+      "vote_average" : 0,
+      "vote_count" : 0
+    },
+    {
+      "adult" : false,
+      "backdrop_path" : "/5RnTvl99XUYgfGmiLunYTkyB28u.jpg",
+      "genre_ids" : [
+        18
+      ],
+      "id" : 1465800,
+      "original_language" : "es",
+      "original_title" : "All We Cannot See",
+      "overview" : "Sometimes a chance meeting in a bathroom is all it takes. Two women are forever changed when they decide to take a road trip together from Portugal to Spain, where what begins as an otherworldly escapade quickly reveals secrets and truths that will shake them to the core.",
+      "popularity" : 0.3401,
+      "poster_path" : null,
+      "release_date" : "2025-06-08",
+      "title" : "All We Cannot See",
+      "video" : false,
+      "vote_average" : 0,
+      "vote_count" : 0
+    },
+    {
+      "adult" : false,
+      "backdrop_path" : "/vDC2CuUsdCyoRF7Wws8oSofCFhv.jpg",
+      "genre_ids" : [
+        18,
+        10749
+      ],
+      "id" : 1476216,
+      "original_language" : "en",
+      "original_title" : "Difference & Repetition, 2020",
+      "overview" : "In March 2020, an Argentine woman flees New York with her Peruvian husband for his family’s empty beach house outside of Lima, whereupon an unplanned pregnancy precipitates the destruction of her marriage.  In the present, she rips the moments of this narrative from their context, and reconstructs her story to reckon with her profound feeling of loneliness and the experience of time in which it has trapped her.",
+      "popularity" : 0.326,
+      "poster_path" : "/pQ5yHbg2nVo3U7BLvzBAUr7qSFR.jpg",
+      "release_date" : "2025-06-08",
+      "title" : "Difference & Repetition, 2020",
+      "video" : false,
+      "vote_average" : 0,
+      "vote_count" : 0
+    },
+    {
+      "adult" : false,
+      "backdrop_path" : "/1eOKyAFiCkk8jMl6I3RdYWUnizA.jpg",
+      "genre_ids" : [
+        18
+      ],
+      "id" : 1128599,
+      "original_language" : "es",
+      "original_title" : "Los inocentes",
+      "overview" : "Cara de Ángel's sexuality is about to explode. His masculinity is constantly being tested, threatened by Colorete and the pack from his neighborhood. To prove his manhood, he joins a robbery; however, driven by his hormones and his attraction to Gabriela and Johnny, a punk singer, his plans will change.",
+      "popularity" : 0.318,
+      "poster_path" : "/A4RINB3qiIA1cb4BochbSUlRYFV.jpg",
+      "release_date" : "2025-06-08",
+      "title" : "The Innocents",
+      "video" : false,
+      "vote_average" : 0,
+      "vote_count" : 0
+    }
+  ],
+  "total_pages" : 3,
+  "total_results" : 54
+}

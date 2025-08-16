@@ -1,0 +1,65 @@
+version: '3.8'
+services:
+  movie-service:
+    depends_on:
+      - redis
+      - kafka
+    build: .
+    container_name: movie-service
+    environment:
+      SPRING_R2DBC_URL: r2dbc:postgresql://postgres:5432/movie_share_db
+      SPRING_R2DBC_USERNAME: 
+      SPRING_R2DBC_PASSWORD: 
+      SPRING_REDIS_HOST: redis
+      SPRING_REDIS_PORT: 6379
+      OMDBAPI_BASE_URL: 
+      OMDBAPI_API_KEY: 
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka:9092
+      KAFKA_TOPIC_PREFIX: new-movies-
+      KAFKA_TOPIC_RETENTION_DAYS: 31
+      SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_ISSUER_URI: http://localhost:8080
+      SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_JWK_SET_URI: http://user-authentication-service:8080/oauth2/jwks
+      TWILIO_SENDGRID_EMAIL_API_KEY:
+    ports:
+      - "9080:9080"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+  kafka:
+    depends_on:
+      - postgres
+      - zookeeper
+    image: confluentinc/cp-kafka:7.2.1
+    ports:
+      - "9092:9092"
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+  zookeeper:
+    image: confluentinc/cp-zookeeper:latest
+    ports:
+      - "2181:2181"
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+  redis:
+    container_name: 'guide-redis'
+    image: 'redis:latest'
+    ports:
+      - "6379:6379"
+  postgres:
+    image: postgres:17
+    container_name: movie_share_db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: HelloWorld2@
+      POSTGRES_DB: movie_share_db
+    ports:
+      - "5433:5432"
+    volumes:
+      - ./schema.sql:/docker-entrypoint-initdb.d/schema.sql
+      - postgres-data:/var/lib/postgresql/data
+
+volumes:
+  postgres-data:

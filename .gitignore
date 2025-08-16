@@ -1,0 +1,27 @@
+# Compiled class file
+*.class
+
+# Log file
+*.logs
+
+# Package files
+*.jar
+*.war
+*.nar
+*.ear
+*.tar.gz
+*.rar
+
+# Ignore individual vscode settings
+.vscode/
+
+# Igore individual IntelliJ settings
+.idea/
+*.iml
+
+# Mac ignore
+.DS_store
+
+# Ignore eclipse files
+.project
+*.prefs

@@ -1,0 +1,39 @@
+version: "3.8"
+services:
+  user-authentication-service:
+    depends_on:
+      - postgres
+    build: .
+    container_name: user-authentication-service
+    environment:
+      AUTH_MODE: 
+      SPRING_DATASOURCE_URL: 
+      SPRING_DATASOURCE_USERNAME: 
+      SPRING_DATASOURCE_PASSWORD: 
+      SPRING_JPA_HIBERNATE_DLL_AUTO: 
+      SPRING_JPA_SHOW_SQL: 
+      REDIRECT_URL: 
+      AUTHENTICATION_SERVER_URI: 
+      OAUTH2_CLIENT_ID: 
+      OAUTH2_CLIENT_SECRET: 
+      JWT_PRIVATE_KEY: 
+      JWT_PUBLIC_KEY: 
+      SENDGRID_EMAIL_API_KEY: 
+    ports:
+      - "8080:8080"
+
+  postgres:
+    image: postgres:17
+    container_name: user-details-db
+    environment:
+      POSTGRES_USER: 
+      POSTGRES_PASSWORD: 
+      POSTGRES_DB: 
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/dev_init.sql:ro
+
+volumes:
+  postgres-data:
