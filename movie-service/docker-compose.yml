@@ -7,19 +7,28 @@ services:
     build: .
     container_name: movie-service
     environment:
-      SPRING_R2DBC_URL: r2dbc:postgresql://postgres:5432/movie_share_db
+      SPRING_R2DBC_URL: 
       SPRING_R2DBC_USERNAME: 
       SPRING_R2DBC_PASSWORD: 
-      SPRING_REDIS_HOST: redis
-      SPRING_REDIS_PORT: 6379
+      SPRING_SQL_INIT_MODE: 
+      SPRING_REDIS_HOST: 
+      SPRING_REDIS_PORT: 
       OMDBAPI_BASE_URL: 
       OMDBAPI_API_KEY: 
-      SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka:9092
-      KAFKA_TOPIC_PREFIX: new-movies-
-      KAFKA_TOPIC_RETENTION_DAYS: 31
-      SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_ISSUER_URI: http://localhost:8080
-      SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_JWK_SET_URI: http://user-authentication-service:8080/oauth2/jwks
-      TWILIO_SENDGRID_EMAIL_API_KEY:
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: 
+      KAFKA_TOPIC_PREFIX: 
+      KAFKA_TOPIC_RETENTION_DAYS: 
+      AUTH_SERVICE_BASE_URL:
+      SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_ISSUER_URI: 
+      SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_JWK_SET_URI: 
+      TWILIO_SENDGRID_EMAIL_API_KEY: 
+      TWILIO_SENDGRID_EMAIL_API_URL:
+      TWILIO_SENDGRID_EMAIL_API_SENDER_EMAIL:
+      TWILIO_SENDGRID_EMAIL_API_SENDER_NAME: 
+      OPENAI_API_KEY: 
+      OPENAI_BASE_URL: 
+      TMDB_BASE_URL:
+      TMDB_API_KEY: 
     ports:
       - "9080:9080"
     volumes:
@@ -52,9 +61,9 @@ services:
     image: postgres:17
     container_name: movie_share_db
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: HelloWorld2@
-      POSTGRES_DB: movie_share_db
+      POSTGRES_USER: 
+      POSTGRES_PASSWORD: 
+      POSTGRES_DB: 
     ports:
       - "5433:5432"
     volumes:

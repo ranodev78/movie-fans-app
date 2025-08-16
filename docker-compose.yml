@@ -11,14 +11,14 @@ services:
     ports:
       - "8080:8080"
     environment:
-      AUTH_MODE: jwt
-      SPRING_DATASOURCE_URL: jdbc:postgresql://user-details-db:5432/user_details_db
+      AUTH_MODE: 
+      SPRING_DATASOURCE_URL: 
       SPRING_DATASOURCE_USERNAME: 
       SPRING_DATASOURCE_PASSWORD: 
-      SPRING_JPA_HIBERNATE_DLL_AUTO: update
+      SPRING_JPA_HIBERNATE_DLL_AUTO: 
       SPRING_JPA_SHOW_SQL: true
-      REDIRECT_URL: http://localhost:5173/dashboard
-      AUTHENTICATION_SERVER_URI: http://user-authentication-service:8080
+      REDIRECT_URL: 
+      AUTHENTICATION_SERVER_URI: 
       JWT_PRIVATE_KEY: 
       JWT_PUBLIC_KEY: 
       SENDGRID_EMAIL_API_KEY: 
@@ -29,9 +29,9 @@ services:
       - backend
     container_name: user-details-db
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: something
-      POSTGRES_DB: user_details_db
+      POSTGRES_USER: 
+      POSTGRES_PASSWORD: 
+      POSTGRES_DB: 
     ports:
       - "5433:5432"
     volumes:
@@ -51,24 +51,28 @@ services:
       - backend
     container_name: movie-service
     environment:
-      SPRING_R2DBC_URL: r2dbc:postgresql://movies-db:5432/movie_share_db
+      SPRING_R2DBC_URL: 
       SPRING_R2DBC_USERNAME: 
       SPRING_R2DBC_PASSWORD: 
-      SPRING_SQL_INIT_MODE: never
-      SPRING_REDIS_HOST: redis
-      SPRING_REDIS_PORT: 6379
+      SPRING_SQL_INIT_MODE: 
+      SPRING_REDIS_HOST: 
+      SPRING_REDIS_PORT: 
       OMDBAPI_BASE_URL: 
       OMDBAPI_API_KEY: 
-      SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka:9092
-      KAFKA_TOPIC_PREFIX: new-movies-
-      KAFKA_TOPIC_RETENTION_DAYS: 31
-      SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_ISSUER_URI: http://user-authentication-service:8080
-      SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_JWK_SET_URI: http://user-authentication-service:8080/oauth2/jwks
-      USER_AUTHENTICATION_SERVICE_BASE_URL: http://user-authentication-service:8080
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: 
+      KAFKA_TOPIC_PREFIX: 
+      KAFKA_TOPIC_RETENTION_DAYS: 
+      AUTH_SERVICE_BASE_URL:
+      SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_ISSUER_URI: 
+      SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_JWK_SET_URI: 
       TWILIO_SENDGRID_EMAIL_API_KEY: 
-      TWILIO_SENDGRID_EMAIL_URL: 
+      TWILIO_SENDGRID_EMAIL_API_URL:
+      TWILIO_SENDGRID_EMAIL_API_SENDER_EMAIL:
+      TWILIO_SENDGRID_EMAIL_API_SENDER_NAME: 
       OPENAI_API_KEY: 
       OPENAI_BASE_URL: 
+      TMDB_BASE_URL:
+      TMDB_API_KEY: 
     ports:
       - "9080:9080"
 
@@ -111,9 +115,9 @@ services:
       - backend
     container_name: movies_db
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: HelloWorld2@
-      POSTGRES_DB: movie_share_db
+      POSTGRES_USER: 
+      POSTGRES_PASSWORD: 
+      POSTGRES_DB: 
     ports:
       - "5434:5432"
     volumes:

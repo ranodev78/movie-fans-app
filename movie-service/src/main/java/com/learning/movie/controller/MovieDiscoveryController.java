@@ -2,8 +2,8 @@ package com.learning.movie.controller;
 
 import com.learning.movie.dto.tmdb.TmdbMovie;
 import com.learning.movie.dto.tmdb.provider.WatchProvidersResponse;
+import com.learning.movie.dto.tmdb.review.TmdbReviewSummary;
 import com.learning.movie.dto.tmdb.search.MovieSearchResponse;
-import com.learning.movie.service.DiscoverMovieService;
 import com.learning.movie.service.tmdb.TmdbMovieService;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -26,12 +26,10 @@ public class MovieDiscoveryController {
     private static final Logger LOGGER = LoggerFactory.getLogger(MovieDiscoveryController.class);
 
     private final TmdbMovieService tmdbMovieService;
-    private final DiscoverMovieService discoverMovieService;
 
     @Autowired
-    public MovieDiscoveryController(TmdbMovieService tmdbMovieService, DiscoverMovieService discoverMovieService) {
+    public MovieDiscoveryController(final TmdbMovieService tmdbMovieService) {
         this.tmdbMovieService = tmdbMovieService;
-        this.discoverMovieService = discoverMovieService;
     }
 
     @GetMapping(value = "/{movieId}", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -52,9 +50,9 @@ public class MovieDiscoveryController {
         return this.tmdbMovieService.getMovieWatchProviders(movieId);
     }
 
-    @GetMapping(value = "/{movieId}/reviews", produces = MediaType.TEXT_PLAIN_VALUE)
-    public Mono<String> getSummarizedMovieReviews(@PathVariable @NotNull Long movieId,
-                                                  @RequestParam("name") @NotBlank String name) {
+    @GetMapping(value = "/{movieId}/reviews", produces = MediaType.APPLICATION_JSON_VALUE)
+    public Mono<TmdbReviewSummary> getSummarizedMovieReviews(@PathVariable @NotNull Long movieId,
+                                                             @RequestParam("name") @NotBlank String name) {
         LOGGER.info("Entering MovieDiscoveryController.getSummarizedMovieReviews...");
         return this.tmdbMovieService.getMovieReviews(movieId, name);
     }

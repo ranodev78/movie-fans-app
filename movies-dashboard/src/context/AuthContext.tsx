@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useCallback, useEffect } from 'react';
+
 import { AUTH_SERVICE_BASE_URL } from '../api/ApiUrl';
 
 interface AuthContextType {
@@ -34,7 +35,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     const checkAuth = useCallback(async () => {
         setIsLoading(true);
         try {
-            const response: Response = await fetchWithCredentials(`${AUTH_SERVICE_BASE_URL}/api/v1.0/users`);
+            const response: Response = await fetchWithCredentials(AUTH_SERVICE_BASE_URL);
             if (response.ok) {
                 const userData = await response.text();
                 setUser(userData);

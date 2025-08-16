@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ChevronLeft, ChevronRight, Heart } from 'lucide-react';
+import { Heart } from 'lucide-react';
 
 import NewlyReleasedMovie from '../../types/NewlyReleasedMovie';
 import Pagination from '../Pagination/Pagination';

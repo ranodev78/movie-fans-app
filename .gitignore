@@ -25,3 +25,6 @@
 # Ignore eclipse files
 .project
 *.prefs
+user-authentication-service/src/main/resources/private.pem
+user-authentication-service/src/main/resources/public.pem
+movies-dashboard/.env

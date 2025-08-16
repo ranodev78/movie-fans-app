@@ -12,6 +12,9 @@ import com.learning.movie.service.subscription.MovieStreamingReleaseSubscription
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -31,13 +34,12 @@ import reactor.core.publisher.Mono;
 import java.net.URI;
 import java.util.Set;
 import java.util.UUID;
-import java.util.logging.Logger;
 
 @RestController
 @RequestMapping("/api/v1.0/movies")
 @Validated
 public class MovieController {
-    private static final Logger LOGGER = Logger.getLogger(MovieController.class.getSimpleName());
+    private static final Logger LOGGER = LoggerFactory.getLogger(MovieController.class);
 
     private static final String MOVIES_PATH_PREFIX = "/movies";
 
@@ -104,6 +106,6 @@ public class MovieController {
     @PostMapping(value = "/subscriptions", consumes = MediaType.APPLICATION_JSON_VALUE)
     public Mono<Void> subscribe(@RequestBody @NotNull StreamingReleaseSubscriptionRequest request,
                                 @AuthenticationPrincipal Jwt principal) {
-        return subscriptionService.subscribe(request.getMovieId(), request.getMovieName(), Set.of(request.getStreamingPlatform()));
+        return subscriptionService.subscribe(request.movieId(), request.movieName(), Set.of(request.streamingPlatform()));
     }
 }

@@ -1,5 +1,6 @@
 package com.learning.movie.service.scheduler;
 
+import com.learning.movie.config.properties.TwilioSendGridEmailApiProperties;
 import com.learning.movie.dto.sendgrid.SendGridEmailRequest;
 import com.learning.movie.dto.subscription.StreamingPlatform;
 import com.learning.movie.dto.tmdb.provider.WatchProvider;
@@ -43,18 +44,21 @@ public class StreamingAvailabilityScheduler {
     private final TmdbRepository tmdbRepository;
     private final ReactiveRedisTemplate<String, WatchProvidersResponse> reactiveRedisTemplate;
     private final EmailNotificationService<SendGridEmailRequest> emailNotificationService;
+    private final TwilioSendGridEmailApiProperties twilioSendGridEmailApiProperties;
 
     @Autowired
     public StreamingAvailabilityScheduler(final MovieStreamingReleaseSubscriptionRepository movieSubscriptionRepository,
                                           final SubscriptionPlatformRepository platformRepository,
                                           final TmdbRepository tmdbRepository,
                                           @Qualifier("watchProvidersRedisTemplate") final ReactiveRedisTemplate<String, WatchProvidersResponse> reactiveRedisTemplate,
-                                          final EmailNotificationService<SendGridEmailRequest> emailNotificationService) {
+                                          final EmailNotificationService<SendGridEmailRequest> emailNotificationService,
+                                          final TwilioSendGridEmailApiProperties twilioSendGridEmailApiProperties) {
         this.movieSubscriptionRepository = movieSubscriptionRepository;
         this.platformRepository = platformRepository;
         this.tmdbRepository = tmdbRepository;
         this.reactiveRedisTemplate = reactiveRedisTemplate;
         this.emailNotificationService = emailNotificationService;
+        this.twilioSendGridEmailApiProperties = twilioSendGridEmailApiProperties;
     }
 
     @Scheduled(cron = "*/30 * * * * ?", zone = "UTC")
@@ -134,7 +138,12 @@ public class StreamingAvailabilityScheduler {
                                                                     return Mono.empty();
                                                                 }
 
-                                                                return Mono.just(NotificationMapper.fromMovieStreamingReleaseSubDetails(subscription.getEmail(), subscription.getMovieName(), matchedPlatforms));
+                                                                return Mono.just(NotificationMapper.fromMovieStreamingReleaseSubDetails(
+                                                                        subscription.getEmail(),
+                                                                        subscription.getMovieName(),
+                                                                        matchedPlatforms,
+                                                                        this.twilioSendGridEmailApiProperties.getSenderEmail(),
+                                                                        this.twilioSendGridEmailApiProperties.getSenderName()));
                                                             },
                                                             16)
                                                             .flatMap(this.emailNotificationService::notifyRecipient, 32));
@@ -161,7 +170,7 @@ public class StreamingAvailabilityScheduler {
                                                               final Set<StreamingPlatform> streamingPlatforms) {
         return this.reactiveRedisTemplate.opsForValue()
                 .get(CACHE_PREFIX_KEY.concat(subscriptionId))
-                .map(cachedWatchProvidersResponse -> cachedWatchProvidersResponse.getResults().get("US").getFlatrate()
+                .map(cachedResponse -> cachedResponse.getResults().get("US").getFlatrate()
                         .stream()
                         .map(WatchProvider::getProviderName)
                         .map(StreamingPlatform::fromDisplayName)

@@ -18,35 +18,30 @@ import java.util.stream.Collectors;
 public final class NotificationMapper {
     private NotificationMapper() {}
 
-    public static SendGridEmailRequest fromMovieStreamingReleaseSubDetails(String email, String movie,
-                                                                           Set<StreamingPlatform> streamingPlatforms) {
-        final Personalization personalization = new Personalization();
-        personalization.setTo(List.of(new EmailAddress(email, "user")));
-
-        personalization.setSubject(
+    public static SendGridEmailRequest fromMovieStreamingReleaseSubDetails(final String email,
+                                                                           final String movie,
+                                                                           final Set<StreamingPlatform> streamingPlatforms,
+                                                                           final String sendGridSenderEmail,
+                                                                           final String sendGridSenderName) {
+        final Personalization personalization = new Personalization(
+                List.of(new EmailAddress(email, "user")),
                 "%s has been released on: %s!".formatted(movie, formatStreamingPlatforms(streamingPlatforms)));
 
-        final EmailAddress from = new EmailAddress("ranochrono29@gmail.com", "movie-discovery");
+        final EmailAddress from = new EmailAddress(sendGridSenderEmail, sendGridSenderName);
 
-        final Content content = new Content();
-        content.setType(MediaType.TEXT_PLAIN_VALUE);
-
-        content.setValue("""
+        final String emailContent = """
                 Hi user,
                 
                 %s has been released on the following platform(s):%n
                 %s
-                """.formatted(movie, formatStreamingPlatforms(streamingPlatforms)));
+                """.formatted(movie, formatStreamingPlatforms(streamingPlatforms));
 
-        final SendGridEmailRequest emailRequest = new SendGridEmailRequest();
-        emailRequest.setPersonalizations(List.of(personalization));
-        emailRequest.setFrom(from);
-        emailRequest.setContent(List.of(content));
+        final Content content = new Content(MediaType.TEXT_PLAIN_VALUE, emailContent);
 
-        return emailRequest;
+        return new SendGridEmailRequest(List.of(personalization), from, List.of(content));
     }
 
-    private static String formatStreamingPlatforms(Set<StreamingPlatform> streamingPlatforms) {
+    private static String formatStreamingPlatforms(final Set<StreamingPlatform> streamingPlatforms) {
         return streamingPlatforms.size() > 1
                 ? streamingPlatforms.stream()
                     .map(StreamingPlatform::getDisplayName)

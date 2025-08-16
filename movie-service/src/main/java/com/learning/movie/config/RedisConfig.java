@@ -28,9 +28,8 @@ public class RedisConfig {
 
     @Bean
     @Primary
-    public ReactiveRedisConnectionFactory reactiveRedisConnectionFactory(
-            @Value("${spring.redis.host:redis}") final String host,
-            @Value("${spring.redis.port:6379}") final int port) {
+    public ReactiveRedisConnectionFactory reactiveRedisConnectionFactory(@Value("${spring.redis.host}") final String host,
+                                                                         @Value("${spring.redis.port}") final int port) {
         return new LettuceConnectionFactory(host, port);
     }
 

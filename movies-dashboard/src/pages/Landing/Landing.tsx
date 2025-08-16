@@ -67,9 +67,7 @@ const Landing = () => {
 
     useEffect(() => {
         // Scroll handler
-        const handleScroll = () => {
-            setIsScrolled(window.scrollY > 50);
-        };
+        const handleScroll = () => setIsScrolled(window.scrollY > 50);
 
         // Intersection observer for scroll reveals
         const observer = new IntersectionObserver(

@@ -1,7 +1,12 @@
 package com.learning.movie.service.openapi;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.learning.movie.dto.tmdb.review.AggregatedTmdbReviews;
+import com.learning.movie.dto.tmdb.review.TmdbReviewSummary;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
@@ -15,93 +20,104 @@ import reactor.util.retry.Retry;
 
 import java.time.Duration;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Predicate;
 
 @Service
 public class OpenAiService {
+    private static final Logger LOGGER = LoggerFactory.getLogger(OpenAiService.class);
+
+    private static final TmdbReviewSummary EMPTY_REVIEW = new TmdbReviewSummary(Collections.emptyList(), Collections.emptyList());
+
+    // Prompt templates
+    private static final String INTERMEDIATE_PROMPT_TEMPLATE = """
+        Summarize the following movie reviews for "%s" into a JSON object with exactly two properties:
+        - positives: array of short bullet-style strengths
+        - negatives: array of short bullet-style criticisms
+
+        Return only valid JSON, no extra commentary or text.
+
+        Reviews:
+        %s
+        """;
+
+    private static final String FINAL_PROMPT_TEMPLATE = """
+        Combine the following intermediate JSON summaries into a final JSON with exactly two fields:
+        - positives: array of concise bullet-point strengths
+        - negatives: array of concise bullet-point criticisms
+
+        Return only valid JSON.
+
+        Intermediate summaries:
+        %s
+        """;
+
     private final WebClient webClient;
     private final String openAiUri;
+    private final ObjectMapper objectMapper;
+    private final int chunkSize;
 
     public OpenAiService(@Qualifier("openAiClient") final WebClient webClient,
-                         @Value("${openai.uri}") final String openAiUri) {
+                         @Value("${openai.uri}") final String openAiUri,
+                         final ObjectMapper objectMapper,
+                         @Value("${openai.chunk.size:3}") final int chunkSize) {
         this.webClient = webClient;
         this.openAiUri = openAiUri;
+        this.objectMapper = objectMapper;
+        this.chunkSize = chunkSize;
     }
 
-    private static List<List<String>> chunkReviews(List<String> reviews, int chunkSize) {
-        List<List<String>> chunks = new ArrayList<>();
-        for (int i = 0; i < reviews.size(); i += chunkSize) {
-            chunks.add(reviews.subList(i, Math.min(i + chunkSize, reviews.size())));
+    private List<List<String>> chunkReviews(List<String> reviews) {
+        final List<List<String>> chunks = new ArrayList<>();
+        for (int i = 0; i < reviews.size(); i += this.chunkSize) {
+            chunks.add(reviews.subList(i, Math.min(i + this.chunkSize, reviews.size())));
         }
 
         return chunks;
     }
 
-    public Mono<String> summarizeMovieReviews(AggregatedTmdbReviews aggregatedTmdbReviews) {
-        final int chunkSize = 1;
-        List<List<String>> chunks = chunkReviews(aggregatedTmdbReviews.reviews(), chunkSize);
+    public Mono<TmdbReviewSummary> summarizeMovieReviews(AggregatedTmdbReviews aggregatedTmdbReviews) {
+        final List<List<String>> chunks = chunkReviews(aggregatedTmdbReviews.reviews());
 
         return Flux.fromIterable(chunks)
-                .concatMap(chunk -> this.summarizeReviewsChunk(aggregatedTmdbReviews.movieName(), chunk)
-                        .delayElement(Duration.ofMillis(300)))
+                .index()
+                .concatMap(tuple2 -> {
+                    final long idx = tuple2.getT1();
+                    final List<String> chunk = tuple2.getT2();
+
+                    return this.summarizeChunk(aggregatedTmdbReviews.movieName(), chunk)
+                            .delayElement(Duration.ofSeconds(idx == 0 ? 0: 2));
+                })
                 .collectList()
-                .flatMap(partialSummaries -> {
-                    String combinedSummaries = String.join("\n\n", partialSummaries);
-
-                    String finalPrompt = String.format("""
-                        Given these intermediate summaries of reviews for "%s", create a final summary with two sections:
-                        Positives: bullet-point list of strengths,
-                        Negatives: bullet-point list of criticisms.
-        
-                        Summaries:
-                        %s
-                        """,
-                            aggregatedTmdbReviews.movieName(), combinedSummaries);
-
-                    final var body = Map.of(
-                            "model", "gpt-3.5-turbo",
-                            "messages", List.of(
-                                    Map.of("role", "system",
-                                           "content", "You are a helpful summarizer"),
-                                    Map.of("role", "user",
-                                           "content", finalPrompt)),
-                            "temperature", 0.7,
-                            "max_tokens", 300);
-
-                    return this.webClient.post()
-                            .uri(uriBuilder -> uriBuilder.path(this.openAiUri).build())
-                            .contentType(MediaType.APPLICATION_JSON)
-                            .bodyValue(body)
-                            .accept(MediaType.APPLICATION_JSON)
-                            .retrieve()
-                            .bodyToMono(JsonNode.class)
-                            .map(json -> json.path("choices").get(0).path("message").path("content").asText());
+                .map(this::mergeJsonChunks)
+                .flatMap(mergedJson -> {
+                    final String finalizedPrompt = String.format(FINAL_PROMPT_TEMPLATE, mergedJson);
+                    return this.callOpenAi(finalizedPrompt)
+                            .defaultIfEmpty(EMPTY_REVIEW);
                 });
     }
 
-    private Mono<String> summarizeReviewsChunk(String movieName, List<String> reviewsChunk) {
-        String joinedReviews = String.join("\n\n", reviewsChunk);
+    private Mono<TmdbReviewSummary> summarizeChunk(String movieName, List<String> reviewsChunk) {
+        final String joinedReviews = String.join("\n\n", reviewsChunk);
+        final String prompt = String.format(INTERMEDIATE_PROMPT_TEMPLATE, movieName, joinedReviews);
 
-        final String prompt = String.format("""
-                Summarize the following movie reviews for "%s" into two sections:
-                Positives: bullet-point list of strengths,
-                Negatives: bullet-point list of criticisms.
-                
-                using the reviews and keeping it very brief:
-                %s
-                """,
-                movieName, joinedReviews);
+        return this.callOpenAi(prompt);
+    }
 
+    private Mono<TmdbReviewSummary> callOpenAi(String prompt) {
         final var body = Map.of(
-                "model", "gpt-3.5-turbo",
+                "model", "gpt-4o-mini",
+                "response_format", Map.of("type", "json_object"),
                 "messages", List.of(
                         Map.of("role", "system",
                                "content", "You are a helpful summarizer"),
                         Map.of("role", "user",
                                "content", prompt)),
                 "temperature", 0.7,
-                "max_tokens", 300);
+                "max_tokens", 300
+        );
 
         return this.webClient.post()
                 .uri(uriBuilder -> uriBuilder.path(this.openAiUri).build())
@@ -110,14 +126,47 @@ public class OpenAiService {
                 .accept(MediaType.APPLICATION_JSON)
                 .retrieve()
                 .bodyToMono(JsonNode.class)
-                .map(json -> json.path("choices").get(0).path("message").path("content").asText())
-                .retryWhen(Retry.backoff(3, Duration.ofSeconds(1))
-                        .filter(throwable -> {
-                            if (throwable instanceof WebClientResponseException e) {
-                                return HttpStatus.TOO_MANY_REQUESTS.isSameCodeAs(e.getStatusCode());
-                            }
+                .map(json -> json.path("choices")
+                        .get(0)
+                        .path("message")
+                        .path("content"))
+                .filter(jsonNode -> !jsonNode.isMissingNode() && !jsonNode.isNull())
+                .map(this::jsonNodeToRecord)
+                .retryWhen(Retry.backoff(3, Duration.ofSeconds(2))
+                        .filter(throwable -> throwable instanceof WebClientResponseException e &&
+                                                       HttpStatus.TOO_MANY_REQUESTS.isSameCodeAs(e.getStatusCode())));
+    }
 
-                            return false;
-                        }));
+    private TmdbReviewSummary mergeJsonChunks(List<TmdbReviewSummary> chunks) {
+        final List<String> positivesCompilation = new ArrayList<>();
+        final List<String> negativesCompilation = new ArrayList<>();
+
+        for (TmdbReviewSummary chunk : chunks) {
+            chunk.positives().stream()
+                    .map(String::trim)
+                    .filter(Predicate.not(String::isBlank))
+                    .forEach(positivesCompilation::add);
+
+            chunk.negatives().stream()
+                    .map(String::trim)
+                    .filter(Predicate.not(String::isBlank))
+                    .forEach(negativesCompilation::add);
+        }
+
+        return new TmdbReviewSummary(positivesCompilation, negativesCompilation);
+    }
+
+    private TmdbReviewSummary jsonNodeToRecord(JsonNode jsonNode) {
+        try {
+            if (jsonNode.isTextual()) {
+                return this.objectMapper.readValue(jsonNode.asText(), TmdbReviewSummary.class);
+            } else if (jsonNode.isObject()) {
+                return this.objectMapper.treeToValue(jsonNode, TmdbReviewSummary.class);
+            }
+        } catch (JsonProcessingException e) {
+            LOGGER.error("Failed to map JsonNode to TmdbReviewSummary", e);
+        }
+
+        return EMPTY_REVIEW;
     }
 }

@@ -3,10 +3,13 @@ package com.learning.movie.dto;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.List;
 
 public class PaginatedMoviesResponse implements Serializable {
+
+    @Serial
     private static final long serialVersionUID = 1L;
 
     private final int totalPages;

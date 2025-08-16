@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 
 import { MOVIE_SERVICE_BASE_URL } from "../../api/ApiUrl";
 
@@ -9,7 +9,7 @@ import WatchProviderRegion from "./types/WatchProviderRegion";
 
 import styles from './ViewMovieDetails.module.css';
 
-async function safeFetch<T>(url: string, token: string | null): Promise<T | null> {
+async function safeFetch<T>(url: string, token: string | null, isJson: boolean): Promise<T | null> {
     try {
         const response: Response = await fetch(url, {
             method: 'GET',
@@ -20,7 +20,9 @@ async function safeFetch<T>(url: string, token: string | null): Promise<T | null
             throw new Error(`HTTP ${response.status}`);
         }
 
-        return await response.json() as T;
+        return (isJson
+            ? await response.json()
+            : await response.text()) as T;
     } catch (err) {
         console.error(`Fetch failed for ${url} due to:`, err);
         return null;
@@ -29,6 +31,9 @@ async function safeFetch<T>(url: string, token: string | null): Promise<T | null
 
 const ViewMovieDetails: React.FC = () => {
     const { id: movieId } = useParams<{ id: string }>();
+    const location = useLocation();
+
+    const state = location.state as { movieName: string };
 
     const [movie, setMovie] = useState<MovieDetails | null>(null);
     const [watchProviders, setWatchProviders] = useState<Record<string, WatchProviderRegion>>({});
@@ -41,9 +46,9 @@ const ViewMovieDetails: React.FC = () => {
             const token = localStorage.getItem('access_token');
 
             const [movieDetailsResponse, watchProvidersResponse, summarizedReviewsResponse] = await Promise.all([
-                safeFetch<MovieDetails>(`${MOVIE_SERVICE_BASE_URL}/api/v1.0/movies/tmdb/${movieId}`, token),
-                safeFetch<WatchProvidersResponse>(`${MOVIE_SERVICE_BASE_URL}/api/v1.0/movies/tmdb/${movieId}/watch-providers`, token),
-                safeFetch<string>(`${MOVIE_SERVICE_BASE_URL}/api/v1.0/movies/tmdb/${movieId}/reviews?name=KarateKid`, token)
+                safeFetch<MovieDetails>(`${MOVIE_SERVICE_BASE_URL}/api/v1.0/movies/tmdb/${movieId}`, token, true),
+                safeFetch<WatchProvidersResponse>(`${MOVIE_SERVICE_BASE_URL}/api/v1.0/movies/tmdb/${movieId}/watch-providers`, token, true),
+                safeFetch<string>(`${MOVIE_SERVICE_BASE_URL}/api/v1.0/movies/tmdb/${movieId}/reviews?name=${state.movieName}`, token, false)
             ]);
 
             if (!movieDetailsResponse) {
@@ -115,7 +120,7 @@ const ViewMovieDetails: React.FC = () => {
                     ))}
                 </div>
                 : <p>No streaming providers available in the US.</p>}
-            {reviews ? <div><p>{reviews}</p></div> : <p>No reviews available</p>}
+            {reviews && <div><p>{reviews}</p></div>}
         </div>
     )
 }

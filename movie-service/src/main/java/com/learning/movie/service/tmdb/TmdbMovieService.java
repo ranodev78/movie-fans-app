@@ -5,6 +5,7 @@ import com.learning.movie.dto.tmdb.provider.WatchProvidersResponse;
 import com.learning.movie.dto.tmdb.review.AggregatedTmdbReviews;
 import com.learning.movie.dto.tmdb.review.TmdbReview;
 import com.learning.movie.dto.tmdb.review.TmdbReviewResponse;
+import com.learning.movie.dto.tmdb.review.TmdbReviewSummary;
 import com.learning.movie.dto.tmdb.search.MovieSearchResponse;
 import com.learning.movie.repository.TmdbRepository;
 import com.learning.movie.service.openapi.OpenAiService;
@@ -46,10 +47,13 @@ public class TmdbMovieService {
     }
 
     public Mono<WatchProvidersResponse> getMovieWatchProviders(Long movieId) {
+        LOGGER.info("Entering TmdbMovieService.getMovieWatchProviders...");
         return this.tmdbRepository.getMovieWatchProviders(String.valueOf(movieId));
     }
 
-    public Mono<String> getMovieReviews(Long movieId, String movieName) {
+    public Mono<TmdbReviewSummary> getMovieReviews(Long movieId, String movieName) {
+        LOGGER.info("Entering TmdbMovieService.getMovieReviews...");
+        
         final String tmdbMovieId = String.valueOf(movieId);
 
         return this.tmdbRepository.getMovieReviews(tmdbMovieId, 1)

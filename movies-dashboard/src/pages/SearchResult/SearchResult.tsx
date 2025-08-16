@@ -20,14 +20,14 @@ const SearchResult: React.FC = () => {
 
     if (!searchResults.length) return <p>No results found.</p>;
 
-    const handleMovieCardOnClick = async (movieId: number) => {
-        navigate(`/movie/${movieId}`);
+    const handleMovieCardOnClick = async (movieId: number, movieName: string) => {
+        navigate(`/movie/${movieId}`, { state: { movieName }});
     }
 
     return (
         <div className={styles.moviesGrid}>
             {searchResults.map(movie => (
-                <div key={movie.id} className={styles.movieCard} onClick={(e: React.MouseEvent<HTMLDivElement>) => handleMovieCardOnClick(movie.id)}>
+                <div key={movie.id} className={styles.movieCard} onClick={(e: React.MouseEvent<HTMLDivElement>) => handleMovieCardOnClick(movie.id, movie.title)}>
                     <div className={styles.moviePosterContainer}>
                         <div className={styles.movieImage}>
                             {movie.poster_path ?

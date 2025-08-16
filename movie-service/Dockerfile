@@ -1,6 +1,6 @@
 FROM eclipse-temurin:17-jdk-alpine
 
-LABEL authors="ranoz"
+LABEL authors="ranodev78"
 
 WORKDIR /app
 

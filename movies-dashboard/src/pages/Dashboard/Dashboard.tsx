@@ -15,7 +15,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { useSearch } from '../../context/SearchContext';
 
-import { MOVIE_SERVICE_BASE_URL } from '../../api/ApiUrl';
+import { MOVIE_SERVICE_BASE_URL, MOVIE_SERVICE_DAILY_NEW_PATH, MOVIE_SERVICE_QUERY_MOVIE_PATH } from '../../api/ApiUrl';
 
 import MovieSearchResponse from '../SearchResult/types/MovieSearchResponse';
 import MovieSearchResult from '../SearchResult/types/MovieSearchResult';
@@ -49,7 +49,7 @@ const Dashboard: React.FC = () => {
             try {
                 const token = localStorage.getItem('access_token');
 
-                const response = await fetch(`${MOVIE_SERVICE_BASE_URL}/api/v1.0/movies/daily-new`, {
+                const response = await fetch(MOVIE_SERVICE_BASE_URL + MOVIE_SERVICE_DAILY_NEW_PATH, {
                     method: 'GET',
                     headers: { 'Authorization': `Bearer ${token}` }
                 });
@@ -91,7 +91,7 @@ const Dashboard: React.FC = () => {
         try {
             const token = localStorage.getItem('access_token');
 
-            const response: Response = await fetch(`${MOVIE_SERVICE_BASE_URL}/api/v1.0/movies/tmdb?q=${searchTerm}`, {
+            const response: Response = await fetch(MOVIE_SERVICE_BASE_URL + MOVIE_SERVICE_QUERY_MOVIE_PATH + searchTerm, {
                 method: 'GET',
                 headers: { 'Authorization': `Bearer ${token}` }
             });
@@ -99,7 +99,7 @@ const Dashboard: React.FC = () => {
             if (response.ok) {
                 const payload = await response.json() as MovieSearchResponse;
                 setSearchResults((prev: MovieSearchResult[]) => [...prev, ...payload.results]);
-            } 
+            }
         } catch (err) {
             console.error('Search error:', err);
         }

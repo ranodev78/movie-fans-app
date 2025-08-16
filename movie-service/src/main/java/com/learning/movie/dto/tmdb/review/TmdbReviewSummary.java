@@ -1,4 +1,6 @@
 package com.learning.movie.dto.tmdb.review;
 
-public record TmdbReviewSummary() {
+import java.util.List;
+
+public record TmdbReviewSummary(List<String> positives, List<String> negatives) {
 }

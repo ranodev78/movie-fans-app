@@ -1,7 +1,7 @@
 import React, { useState, FormEvent, ChangeEvent, useEffect } from 'react';
 import { Eye, EyeOff, Shield, AlertCircle, CheckCircle2, Loader2 } from 'lucide-react';
 
-import { AUTH_SERVICE_BASE_URL } from '../../api/ApiUrl';
+import { AUTH_SERVICE_BASE_URL, AUTH_SERVICE_USERS_PATH } from '../../api/ApiUrl';
 import { fetchWithCredentials } from '../../context/AuthContext';
 
 import styles from './LoginPage.module.css';
@@ -13,7 +13,7 @@ interface FormData {
 
 const checkSession = async () => {
     try {
-        const response = await fetchWithCredentials(`${AUTH_SERVICE_BASE_URL}/api/v1.0/users`);
+        const response = await fetchWithCredentials(AUTH_SERVICE_BASE_URL + AUTH_SERVICE_USERS_PATH);
         if (response.ok) {
             const userData = await response.text();
             if (userData !== '') {
